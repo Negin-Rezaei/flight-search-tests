@@ -1,0 +1,20 @@
+{
+  "name": "flytoday-ui-test",
+  "version": "1.0.0",
+  "description": "Automated UI functionality test for regression testing of web application",
+  "main": "searchFlight.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha -u=tdd"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chromedriver": "^136.0.3",
+    "selenium-webdriver": "^4.33.0"
+  },
+  "devDependencies": {
+    "mocha": "^11.5.0"
+  }
+}
