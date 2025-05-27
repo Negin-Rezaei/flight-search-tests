@@ -7,8 +7,9 @@ import SearchflightPage from "../pages/search/search_flight_page.js";
 import assert from "assert";
 
 
-let driver;
 const MOCHA_TEST_TIMEOUT = 90000;
+
+let driver;
 /**@type {SearchflightPage} */
 let searchflightPage;
 
@@ -16,7 +17,7 @@ suite("تست سوئیت - سایت فلای تودی", function () {
     this.timeout(MOCHA_TEST_TIMEOUT);
 
     suiteSetup(async function () {
-        driver = await new Builder().forBrowser("chrome").setChromeOptions(new chrome.Options()).build()
+        driver = await new Builder().forBrowser("chrome").setChromeOptions(new chrome.Options()).build();
         searchflightPage = new SearchflightPage(driver);
         await driver.get("https://www.flytoday.ir/");
     });

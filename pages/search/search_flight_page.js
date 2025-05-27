@@ -103,15 +103,17 @@ export default class SearchflightPage {
      * Checks whether the expected value exists in both the filter content and the date content.
      * This method first locates the filter and date elements using their respective XPath selectors. 
      * Then retrieves their text content and verifies whether the expected value is included in both.
+     * @param {string} content - A unique identifier or label used to locate filter and date elements on the page.
+     * @param {string} expectValue - The expected value to be searched within the retrieved filter and date content.
      * @async
      * @returns {Promise<boolean>} - `true` if the search success element is found, otherwise `false`.
      */
     async getDetailsFilters(content, expectValue) {
         const filterContent = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.filterContent(content))), SELENIUM_WAIT_TIMEOUT_MEDIUM);
         const dateContent = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.dateContent(content))), SELENIUM_WAIT_TIMEOUT_MEDIUM);
-        const ActualValueFillter = await filterContent.getText();
-        const ActualValueDate = await dateContent.getText();
-        if (ActualValueFillter.includes(expectValue) && ActualValueDate.includes(expectValue)) {
+        const actualValueFilter = await filterContent.getText();
+        const actualValueDate = await dateContent.getText();
+        if (actualValueFilter.includes(expectValue) && actualValueDate.includes(expectValue)) {
             return true
         }
         else {
@@ -166,6 +168,7 @@ export default class SearchflightPage {
     /**
      * Waits for the loading spinner to appear and then disappear.
      * This method is used after clicking the search button to ensure that the results page has finished loading before continuing.
+     * @async
      * @returns {Promise<void>} A promise that will be resolved when the method has completed.
      */
     async waitForLoad() {
