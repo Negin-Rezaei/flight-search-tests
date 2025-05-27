@@ -66,6 +66,6 @@ suite("تست سوئیت - سایت فلای تودی", function () {
     });
     //مرورگر کروم بسته می شود.
     suiteTeardown(async function () {
-        //await driver.quit();
+        await driver.quit();
     });
 });
