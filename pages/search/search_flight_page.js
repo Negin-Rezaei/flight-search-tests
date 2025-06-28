@@ -172,8 +172,8 @@ export default class SearchflightPage {
      * @returns {Promise<void>} A promise that will be resolved when the method has completed.
      */
     async waitForLoad() {
-        await this._driver.wait(until.elementLocated(By.xpath(this._selectors.spinLoadingXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
-        await this._driver.wait(until.stalenessOf(await this._driver.findElement(By.xpath(this._selectors.spinLoadingXpath))), SELENIUM_WAIT_TIMEOUT_MEDIUM);
+        await this._driver.wait(until.elementLocated(By.xpath(this._selectors.spinLoadingXpath)), SELENIUM_WAIT_TIMEOUT_LONG);
+        await this._driver.wait(until.stalenessOf(await this._driver.findElement(By.xpath(this._selectors.spinLoadingXpath))), SELENIUM_WAIT_TIMEOUT_LONG);
     }
 
     /**
@@ -186,7 +186,7 @@ export default class SearchflightPage {
     async isSearchSuccessful() {
         await this.waitForLoad();
         try {
-            await this._driver.wait(until.elementsLocated(By.xpath(this._selectors.searchSuccessfullyXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
+            await this._driver.wait(until.elementsLocated(By.xpath(this._selectors.searchSuccessfullyXpath)), SELENIUM_WAIT_TIMEOUT_LONG);
             return true;
         } catch {
             return false;

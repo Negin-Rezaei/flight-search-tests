@@ -49,8 +49,8 @@ suite("تست سوئیت - سایت فلای تودی", function () {
         const destinationLocation = "مشهد";
         const sourceFilterContent = "تهران";
         const destinationFilterContent = "مشهد";
-        const dateFilterContent = "تیر";
-        const expectedValueForDate="8 تیر";
+        const dateFilterContent = "مرداد";
+        const expectedValueForDate="8 مرداد";
 
         assert.ok(await searchflightPage.isDisplaying());
         await searchflightPage.clickOnMaxIcon();
