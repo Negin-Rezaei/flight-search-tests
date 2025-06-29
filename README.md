@@ -1,6 +1,22 @@
-# Flight Search Tests
+# ✈️ Flight Search UI Tests – FlyToday
 
-This project contains automated UI tests written in JavaScript.
+This project contains automated UI tests for the FlyToday flight search website, written in JavaScript using Selenium WebDriver.
+
+## ✅ Features
+
+- Open FlyToday website and maximize the window
+- Select domestic flights by default
+- Handle any pop-ups
+- Search flights from Tehran to Mashhad
+- Select a date and perform the search
+- Verify all UI interactions successfully
+
+## 📸 Sample Test Result
+
+Here is a screenshot of a successful test run using Selenium and JavaScript:
+
+![Test Result](pass.png)
+
 
 ## ✅ How to run the tests (No GitHub or VS Code needed)
 
