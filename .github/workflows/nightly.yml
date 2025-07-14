@@ -25,6 +25,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y chromium-browser
+          sudo rm -f /usr/bin/google-chrome     # <- حذف لینک اگر وجود دارد
           sudo ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
 
       - name: Run Selenium Tests
