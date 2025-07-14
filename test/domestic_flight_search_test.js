@@ -17,7 +17,14 @@ suite("تست سوئیت - سایت فلای تودی", function () {
     this.timeout(MOCHA_TEST_TIMEOUT);
 
     suiteSetup(async function () {
-        driver = await new Builder().forBrowser("chrome").setChromeOptions(new chrome.Options()).build();
+         const options = new chrome.Options();
+          if (process.env.HEADLESS === "true") {
+            options.addArguments("--headless");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+        }
+        driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build();
         searchflightPage = new SearchflightPage(driver);
         await driver.get("https://www.flytoday.ir/");
     });
