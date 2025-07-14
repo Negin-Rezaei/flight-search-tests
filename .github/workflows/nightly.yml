@@ -1,0 +1,38 @@
+name: Nightly Selenium Test
+
+on:
+  schedule:
+    - cron: '0 21 * * *'  # اجرای هر شب ساعت 12:30 شب ایران
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Chrome
+        run: |
+          sudo apt update
+          sudo apt install -y chromium-browser
+          sudo ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
+
+      - name: Run Selenium Tests
+        run: npm test
+
+      - name: Upload mochawesome HTML Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: mochawesome-report
+          path: mochawesome-report/
