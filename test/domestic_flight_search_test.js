@@ -47,8 +47,8 @@ suite("تست سوئیت - سایت فلای تودی", function () {
         const destinationFilterTitle = "مقصد";
         const sourceLocation = "تهران";
         const destinationLocation = "مشهد";
-        const sourceFilterContent = "تهران";
-        const destinationFilterContent = "مشهد";
+        const expectedValueForsourceLocation = "تهران";
+        const expectedValueFordestinationLocation = "مشهد";
         const dateFilterContent = "مرداد";
         const expectedValueForDate="8 مرداد";
 
@@ -56,10 +56,10 @@ suite("تست سوئیت - سایت فلای تودی", function () {
         await searchflightPage.clickOnMaxIcon();
         await searchflightPage.clickOnSourceFilterAndDestinationFilter(sourceFilterTitle);
         await searchflightPage.selectLocationInDropDown(sourceLocation);
-        assert.ok(await searchflightPage.getDetailsFilters(sourceFilterContent, sourceLocation));
+        assert.ok(await searchflightPage.getDetailsFilters(sourceLocation, expectedValueForsourceLocation));
         await searchflightPage.clickOnSourceFilterAndDestinationFilter(destinationFilterTitle);
         await searchflightPage.selectLocationInDropDown(destinationLocation);
-        assert.ok(await searchflightPage.getDetailsFilters(destinationFilterContent, destinationLocation));
+        assert.ok(await searchflightPage.getDetailsFilters(destinationLocation, expectedValueFordestinationLocation));
         await searchflightPage.selectDateInput();
         assert.ok(await searchflightPage.getDetailsFilters(dateFilterContent, expectedValueForDate));
         await searchflightPage.clickOnSearchButton();
