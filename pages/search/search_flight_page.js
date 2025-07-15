@@ -144,8 +144,10 @@ export default class SearchflightPage {
      */
     async selectDateInput() {
         await this.handleDiscountIframeIfExists();
-        const iconcCalendar = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.iconcCalendarXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
+        const iconcCalendar = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.iconcCalendarXpath)), SELENIUM_WAIT_TIMEOUT_LONG);
         await this._driver.wait(until.elementIsVisible(iconcCalendar), SELENIUM_WAIT_TIMEOUT_LONG);
+        await this._driver.wait(until.elementIsEnabled(iconcCalendar), SELENIUM_WAIT_TIMEOUT_LONG);
+        
         await iconcCalendar.click();
         await this._driver.wait(until.elementLocated(By.xpath(this._selectors.calendarBodyXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
         const dateinput = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.dateinputXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
