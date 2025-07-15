@@ -2,7 +2,7 @@ name: Nightly Selenium Test
 
 on:
   schedule:
-    - cron: '15 15 * * *' 
+    - cron: '15 15 * * *'
   workflow_dispatch:
 
 jobs:
@@ -18,19 +18,16 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
 
-      - name: Install Google Chrome
-        run: |
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt install -y ./google-chrome-stable_current_amd64.deb
-          
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run Selenium Tests
-        run: HEADLESS=true npm test
+        env:
+          HEADLESS: true
+        run: npm test
 
       - name: Upload mochawesome HTML Report
         if: always()
