@@ -2,7 +2,7 @@ name: Nightly Selenium Test
 
 on:
   schedule:
-    - cron: '15 15 * * *'
+    - cron: '30 18 * * *'  # ساعت 10 شب به وقت ایران
   workflow_dispatch:
 
 jobs:
