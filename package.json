@@ -5,16 +5,16 @@
   "main": "searchFlight.js",
   "type": "module",
   "scripts": {
-     "test": "node ./node_modules/mocha/bin/mocha ./test/domestic_flight_search_test.js --reporter mochawesome --ui tdd"
+    "test": "node ./node_modules/mocha/bin/mocha ./test/domestic_flight_search_test.js --reporter mochawesome --ui tdd"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chromedriver": "^136.0.3",
     "selenium-webdriver": "^4.33.0"
   },
   "devDependencies": {
+    "chromedriver": "^138.0.2",
     "mocha": "^11.5.0",
     "mochawesome": "^7.1.3"
   }
