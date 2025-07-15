@@ -25,6 +25,9 @@
             "runtimeArgs": [
                 "--inspect-brk"
             ],
+            "env": {
+                "HEADLESS": "true"
+            },
             "console": "integratedTerminal",
         }
     ]

@@ -5,7 +5,7 @@
   "main": "searchFlight.js",
   "type": "module",
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha ./test/domestic_flight_search_test.js --reporter mochawesome --ui tdd"
+    "test:headless": "set HEADLESS=true && node ./node_modules/mocha/bin/mocha ./test/domestic_flight_search_test.js --reporter mochawesome --ui tdd"
   },
   "keywords": [],
   "author": "",

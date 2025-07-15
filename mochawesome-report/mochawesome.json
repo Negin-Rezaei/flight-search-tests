@@ -1,0 +1,138 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-07-15T13:16:42.324Z",
+    "end": "2025-07-15T13:17:25.650Z",
+    "duration": 43326,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "4f89f718-b550-4cd3-a702-a940389677c1",
+      "title": "",
+      "fullFile": "D:\\Test & Automation TestTraining\\1new $ do not save---1404.03.01\\My Personal Project\\UI Automation\\Flytoday Site\\flytoday-ui-test\\test\\domestic_flight_search_test.js",
+      "file": "\\test\\domestic_flight_search_test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "32dffc31-c69e-4cc6-9745-59b1e9979874",
+          "title": "تست سوئیت - سایت فلای تودی",
+          "fullFile": "D:\\Test & Automation TestTraining\\1new $ do not save---1404.03.01\\My Personal Project\\UI Automation\\Flytoday Site\\flytoday-ui-test\\test\\domestic_flight_search_test.js",
+          "file": "\\test\\domestic_flight_search_test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"تست سوئیت - سایت فلای تودی\"",
+              "fullTitle": "تست سوئیت - سایت فلای تودی \"before all\" hook in \"تست سوئیت - سایت فلای تودی\"",
+              "timedOut": false,
+              "duration": 4855,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const options = new chrome.Options();\nconsole.log(\"HEADLESS:\", process.env.HEADLESS); // برای دیباگ\n if (process.env.HEADLESS === \"true\") {\n        \n   options.addArguments(\"--headless=new\");\n   options.addArguments(\"--disable-gpu\");\n   options.addArguments(\"--no-sandbox\");\n   options.addArguments(\"--disable-dev-shm-usage\");\n        }\n        driver = await new Builder().forBrowser(\"chrome\").setChromeOptions(options).build();\n        searchflightPage = new SearchflightPage(driver);\n        await driver.get(\"https://www.flytoday.ir/\");",
+              "err": {},
+              "uuid": "211e7ef0-fd24-45b0-9d4e-f5a29917f3ce",
+              "parentUUID": "32dffc31-c69e-4cc6-9745-59b1e9979874",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"تست سوئیت - سایت فلای تودی\"",
+              "fullTitle": "تست سوئیت - سایت فلای تودی \"after all\" hook in \"تست سوئیت - سایت فلای تودی\"",
+              "timedOut": false,
+              "duration": 129,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "eaf136fd-171f-4588-becd-c02251c51119",
+              "parentUUID": "32dffc31-c69e-4cc6-9745-59b1e9979874",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "سرچ پرواز داخلی",
+              "fullTitle": "تست سوئیت - سایت فلای تودی سرچ پرواز داخلی",
+              "timedOut": false,
+              "duration": 38324,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const sourceFilterTitle = \"مبدا\";\n        const destinationFilterTitle = \"مقصد\";\n        const sourceLocation = \"تهران\";\n        const destinationLocation = \"مشهد\";\n        const expectedValueForsourceLocation = \"تهران\";\n        const expectedValueFordestinationLocation = \"مشهد\";\n        const dateFilterContent = \"مرداد\";\n        const expectedValueForDate=\"8 مرداد\";\n        assert.ok(await searchflightPage.isDisplaying());\n        await searchflightPage.clickOnMaxIcon();\n        await searchflightPage.clickOnSourceFilterAndDestinationFilter(sourceFilterTitle);\n        await searchflightPage.selectLocationInDropDown(sourceLocation);\n        assert.ok(await searchflightPage.getDetailsFilters(sourceLocation, expectedValueForsourceLocation));\n        await searchflightPage.clickOnSourceFilterAndDestinationFilter(destinationFilterTitle);\n        await searchflightPage.selectLocationInDropDown(destinationLocation);\n        assert.ok(await searchflightPage.getDetailsFilters(destinationLocation, expectedValueFordestinationLocation));\n        await searchflightPage.selectDateInput();\n        assert.ok(await searchflightPage.getDetailsFilters(dateFilterContent, expectedValueForDate));\n        await searchflightPage.clickOnSearchButton();\n        await searchflightPage.isSearchSuccessful();",
+              "err": {},
+              "uuid": "e8576126-6273-472c-86fc-d41d2709c598",
+              "parentUUID": "32dffc31-c69e-4cc6-9745-59b1e9979874",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e8576126-6273-472c-86fc-d41d2709c598"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 38324,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 90000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.5.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
