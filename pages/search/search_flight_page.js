@@ -25,7 +25,6 @@ export default class SearchflightPage {
             locationSelectionXpath: (location) => `//div[@role='button']//p[text()='${location}']`,
             // Data 
             iconcCalendarXpath: "//span[@class='icon-calendar field_adornmentIcon__twlv1']",
-            //iconcCalendarXpath: "//*[@id='search-bar']/div/div/section/div[2]/div/div[2]/div/div[2]/div/button",
             calendarBodyXpath: "//div[@class='calendar-body_calendarWrapper__fRUc6']",
             dateinputXpath: "//*[@id='search-bar']/div/div/section/div[2]/div/div[2]/div/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/button[8]/div/span[1]",
             // Button 
@@ -139,6 +138,8 @@ export default class SearchflightPage {
     /**
      * Opens the calendar widget and selects a date.
      * This method Handles and closes the discount iframe if it is present.
+     * Scrolls to and clicks the calendar icon and waits for the calendar body to appear.
+     * Finds and clicks on the date input field.
      * @async
      * @returns {Promise<void>} A promise that will be resolved when the method has completed.
      */
@@ -148,11 +149,18 @@ export default class SearchflightPage {
         await this._driver.executeScript("arguments[0].scrollIntoView({block: 'center'});", iconcCalendar);
         await this._driver.sleep(500);
         await iconcCalendar.click();
-
         await this._driver.wait(until.elementLocated(By.xpath(this._selectors.calendarBodyXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
         const dateinput = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.dateinputXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
         await this._driver.wait(until.elementIsVisible(dateinput), SELENIUM_WAIT_TIMEOUT_MEDIUM);
         await dateinput.click();
+    }
+
+    /**
+     * Clicks the confirmation button to finalize the date selection.
+     * @async
+     * @returns {Promise<void>} A promise that will be resolved when the method has completed.
+     */
+    async confirmDateSelection() {
         const confirmationButton = await this._driver.findElement(By.xpath(this._selectors.confirmationButtonXpath));
         await confirmationButton.click();
     }

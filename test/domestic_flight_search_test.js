@@ -18,12 +18,12 @@ suite("تست سوئیت - سایت فلای تودی", function () {
 
     suiteSetup(async function () {
          const options = new chrome.Options();
-          if (process.env.HEADLESS === "true") {
-            options.addArguments("--headless=new");
-            options.addArguments("--disable-gpu");
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
-        }
+        //   if (process.env.HEADLESS === "true") {
+        //     options.addArguments("--headless=new");
+        //     options.addArguments("--disable-gpu");
+        //     options.addArguments("--no-sandbox");
+        //     options.addArguments("--disable-dev-shm-usage");
+        // }
         driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build();
         searchflightPage = new SearchflightPage(driver);
         await driver.get("https://www.flytoday.ir/");
@@ -68,6 +68,7 @@ suite("تست سوئیت - سایت فلای تودی", function () {
         await searchflightPage.selectLocationInDropDown(destinationLocation);
         assert.ok(await searchflightPage.getDetailsFilters(destinationLocation, expectedValueFordestinationLocation));
         await searchflightPage.selectDateInput();
+        await searchflightPage.confirmDateSelection();
         assert.ok(await searchflightPage.getDetailsFilters(dateFilterContent, expectedValueForDate));
         await searchflightPage.clickOnSearchButton();
         await searchflightPage.isSearchSuccessful();
