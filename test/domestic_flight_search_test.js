@@ -19,7 +19,7 @@ suite("تست سوئیت - سایت فلای تودی", function () {
     suiteSetup(async function () {
          const options = new chrome.Options();
           if (process.env.HEADLESS === "true") {
-            options.addArguments("--headless");
+            options.addArguments("--headless=new");
             options.addArguments("--disable-gpu");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
