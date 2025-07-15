@@ -146,11 +146,11 @@ export default class SearchflightPage {
         await this.handleDiscountIframeIfExists();
         const iconcCalendar = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.iconcCalendarXpath)), SELENIUM_WAIT_TIMEOUT_LONG);
         //await this._driver.wait(until.elementIsVisible(iconcCalendar), SELENIUM_WAIT_TIMEOUT_LONG);
-       // await this._driver.executeScript("arguments[0].scrollIntoView({block: 'center'});", iconcCalendar);
+       //await this._driver.executeScript("arguments[0].scrollIntoView({block: 'center'});", iconcCalendar);
         //await this._driver.sleep(500);
-        await this._driver.findElement(By.xpath(this._selectors.iconcCalendar));
+        await this._driver.findElement(By.xpath(this._selectors.iconcCalendarXpath));
         await iconcCalendar.click();
-        
+
         await this._driver.wait(until.elementLocated(By.xpath(this._selectors.calendarBodyXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
         const dateinput = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.dateinputXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
         await this._driver.wait(until.elementIsVisible(dateinput), SELENIUM_WAIT_TIMEOUT_MEDIUM);
