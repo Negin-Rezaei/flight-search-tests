@@ -24,9 +24,9 @@ export default class SearchflightPage {
             iframeTitleId: "webpush-onsite",
             locationSelectionXpath: (location) => `//div[@role='button']//p[text()='${location}']`,
             // Data 
-            iconcCalendarXpath: "//span[@class='icon-calendar field_adornmentIcon__twlv1']",
-            calendarBodyXpath: "//div[@class='calendar-body_calendarWrapper__fRUc6']",
-            dateinputXpath: "//*[@id='search-bar']/div/div/section/div[2]/div/div[2]/div/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/button[8]/div/span[1]",
+            iconcCalendarXpath: "//span[@class='icon-calendar field_adornmentIcon__twlv1 text-gray-900']",
+            calendarMonthHeaderXpath: "//div[@class='w-full items-center justify-between absolute z-10 top-2 md:top-4 right-0 px-6 flex rtl']",
+            dateinputXpath: (monthInput, dayInput) => `//header[text()='${monthInput}']/..//button[${dayInput}]`,
             // Button 
             confirmationButtonXpath: "//button[text()='تایید']",
             searchButtonXpath: "//button[text()='جستجو']",
@@ -138,21 +138,23 @@ export default class SearchflightPage {
     /**
      * Opens the calendar widget and selects a date.
      * This method Handles and closes the discount iframe if it is present.
-     * Scrolls to and clicks the calendar icon and waits for the calendar body to appear.
-     * Finds and clicks on the date input field.
+     * Locates and clicks the calendar icon to open the calendar.
+     * Waits for the calendar body and target month to be present.
+     * Selects the desired day within the specified month.
+     * @param {!string} monthInput - The Persian month text visible in the calendar header.
+     * @param {!number} dayInput - The index of the `<button>` element representing the day to select.
      * @async
      * @returns {Promise<void>} A promise that will be resolved when the method has completed.
      */
-    async selectDateInput() {
+    async selectDateInput(monthInput, dayInput) {
         await this.handleDiscountIframeIfExists();
         const iconcCalendar = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.iconcCalendarXpath)), SELENIUM_WAIT_TIMEOUT_LONG);
         await this._driver.executeScript("arguments[0].scrollIntoView({block: 'center'});", iconcCalendar);
-        await this._driver.sleep(500);
         await iconcCalendar.click();
-        await this._driver.wait(until.elementLocated(By.xpath(this._selectors.calendarBodyXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
-        const dateinput = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.dateinputXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
-        await this._driver.wait(until.elementIsVisible(dateinput), SELENIUM_WAIT_TIMEOUT_MEDIUM);
-        await dateinput.click();
+        await this._driver.wait(until.elementLocated(By.xpath(this._selectors.calendarMonthHeaderXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
+        const dateinput1 = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.dateinputXpath(monthInput, dayInput))), SELENIUM_WAIT_TIMEOUT_LONG);
+        await this._driver.wait(until.elementIsVisible(dateinput1), SELENIUM_WAIT_TIMEOUT_LONG);
+        await dateinput1.click();
     }
 
     /**

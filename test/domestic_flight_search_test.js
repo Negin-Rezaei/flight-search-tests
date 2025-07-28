@@ -17,8 +17,8 @@ suite("تست سوئیت - سایت فلای تودی", function () {
     this.timeout(MOCHA_TEST_TIMEOUT);
 
     suiteSetup(async function () {
-         const options = new chrome.Options();
-          if (process.env.HEADLESS === "true") {
+        const options = new chrome.Options();
+        if (process.env.HEADLESS === "true") {
             options.addArguments("--headless=new");
             options.addArguments("--disable-gpu");
             options.addArguments("--no-sandbox");
@@ -56,8 +56,10 @@ suite("تست سوئیت - سایت فلای تودی", function () {
         const destinationLocation = "مشهد";
         const expectedValueForsourceLocation = "تهران";
         const expectedValueFordestinationLocation = "مشهد";
-        const dateFilterContent = "مرداد";
-        const expectedValueForDate="8 مرداد";
+        const dateFilterContent = "شهریور";
+        const expectedValueForDate = "30 شهریور";
+        const monthInput = "شهریور 1404";
+        const dayInput = 30;
 
         assert.ok(await searchflightPage.isDisplaying());
         await searchflightPage.clickOnMaxIcon();
@@ -67,7 +69,7 @@ suite("تست سوئیت - سایت فلای تودی", function () {
         await searchflightPage.clickOnSourceFilterAndDestinationFilter(destinationFilterTitle);
         await searchflightPage.selectLocationInDropDown(destinationLocation);
         assert.ok(await searchflightPage.getDetailsFilters(destinationLocation, expectedValueFordestinationLocation));
-        await searchflightPage.selectDateInput();
+        await searchflightPage.selectDateInput(monthInput, dayInput);
         await searchflightPage.confirmDateSelection();
         assert.ok(await searchflightPage.getDetailsFilters(dateFilterContent, expectedValueForDate));
         await searchflightPage.clickOnSearchButton();
