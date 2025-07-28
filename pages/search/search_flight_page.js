@@ -155,6 +155,7 @@ export default class SearchflightPage {
         await this._driver.wait(until.elementLocated(By.xpath(this._selectors.calendarMonthHeaderXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
         const dateInput = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.dateInputXpath(monthInput, dayInput))), SELENIUM_WAIT_TIMEOUT_LONG);
         await this._driver.wait(until.elementIsVisible(dateInput), SELENIUM_WAIT_TIMEOUT_LONG);
+        await this._driver.sleep(500);
         await dateInput.click();
     }
 
