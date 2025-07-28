@@ -150,6 +150,7 @@ export default class SearchflightPage {
         await this.handleDiscountIframeIfExists();
         const iconCalendar = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.iconCalendarXpath)), SELENIUM_WAIT_TIMEOUT_LONG);
         await this._driver.executeScript("arguments[0].scrollIntoView({block: 'center'});", iconCalendar);
+        await this._driver.sleep(500);
         await iconCalendar.click();
         await this._driver.wait(until.elementLocated(By.xpath(this._selectors.calendarMonthHeaderXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
         const dateInput = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.dateInputXpath(monthInput, dayInput))), SELENIUM_WAIT_TIMEOUT_LONG);
