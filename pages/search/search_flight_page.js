@@ -26,6 +26,7 @@ export default class SearchflightPage {
             // Data 
             iconCalendarXpath: "//span[@class='icon-calendar field_adornmentIcon__twlv1 text-gray-900']",
             calendarMonthHeaderXpath: "//div[@class='w-full items-center justify-between absolute z-10 top-2 md:top-4 right-0 px-6 flex rtl']",
+            calendarBodyXpath: "//div[@class='popper_popper__uxti2 md:w-max w-full transition-all duration-200']",
             dateInputXpath: (monthInput, dayInput) => `//header[text()='${monthInput}']/..//button[${dayInput}]`,
             // Button 
             confirmationButtonXpath: "//button[text()='تایید']",
@@ -152,6 +153,7 @@ export default class SearchflightPage {
         await this._driver.executeScript("arguments[0].scrollIntoView({block: 'center'});", iconCalendar);
         await this._driver.sleep(500);
         await iconCalendar.click();
+        await this._driver.wait(until.elementLocated(By.xpath(this._selectors.calendarBodyXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
         await this._driver.wait(until.elementLocated(By.xpath(this._selectors.calendarMonthHeaderXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
         const dateInput = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.dateInputXpath(monthInput, dayInput))), SELENIUM_WAIT_TIMEOUT_LONG);
         await this._driver.wait(until.elementIsVisible(dateInput), SELENIUM_WAIT_TIMEOUT_LONG);
