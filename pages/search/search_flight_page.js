@@ -20,13 +20,13 @@ export default class SearchflightPage {
         this._selectors = {
             // Title 
             flyTodayPageXpath: "//div[@id='__next']//div[@id='back-to-top-anchor']//..//div[text()='پرواز داخلی']",
-            filtertitleXpath: (filtertitle) => `//label[text()='${filtertitle}']`,
+            filterTitleXpath: (filterTitle) => `//label[text()='${filterTitle}']`,
             iframeTitleId: "webpush-onsite",
             locationSelectionXpath: (location) => `//div[@role='button']//p[text()='${location}']`,
             // Data 
-            iconcCalendarXpath: "//span[@class='icon-calendar field_adornmentIcon__twlv1 text-gray-900']",
+            iconCalendarXpath: "//span[@class='icon-calendar field_adornmentIcon__twlv1 text-gray-900']",
             calendarMonthHeaderXpath: "//div[@class='w-full items-center justify-between absolute z-10 top-2 md:top-4 right-0 px-6 flex rtl']",
-            dateinputXpath: (monthInput, dayInput) => `//header[text()='${monthInput}']/..//button[${dayInput}]`,
+            dateInputXpath: (monthInput, dayInput) => `//header[text()='${monthInput}']/..//button[${dayInput}]`,
             // Button 
             confirmationButtonXpath: "//button[text()='تایید']",
             searchButtonXpath: "//button[text()='جستجو']",
@@ -93,9 +93,9 @@ export default class SearchflightPage {
      * @async
      * @returns {Promise<void>}  A promise that will be resolved when the method has completed.
      */
-    async clickOnSourceFilterAndDestinationFilter(filtertitle) {
+    async clickOnSourceFilterAndDestinationFilter(filterTitle) {
         await this.handleDiscountIframeIfExists();
-        const sourceFilter = await this._driver.findElement(By.xpath(this._selectors.filtertitleXpath(filtertitle)));
+        const sourceFilter = await this._driver.findElement(By.xpath(this._selectors.filterTitleXpath(filterTitle)));
         await sourceFilter.click();
     }
 
@@ -148,13 +148,13 @@ export default class SearchflightPage {
      */
     async selectDateInput(monthInput, dayInput) {
         await this.handleDiscountIframeIfExists();
-        const iconcCalendar = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.iconcCalendarXpath)), SELENIUM_WAIT_TIMEOUT_LONG);
-        await this._driver.executeScript("arguments[0].scrollIntoView({block: 'center'});", iconcCalendar);
-        await iconcCalendar.click();
+        const iconCalendar = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.iconCalendarXpath)), SELENIUM_WAIT_TIMEOUT_LONG);
+        await this._driver.executeScript("arguments[0].scrollIntoView({block: 'center'});", iconCalendar);
+        await iconCalendar.click();
         await this._driver.wait(until.elementLocated(By.xpath(this._selectors.calendarMonthHeaderXpath)), SELENIUM_WAIT_TIMEOUT_MEDIUM);
-        const dateinput1 = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.dateinputXpath(monthInput, dayInput))), SELENIUM_WAIT_TIMEOUT_LONG);
-        await this._driver.wait(until.elementIsVisible(dateinput1), SELENIUM_WAIT_TIMEOUT_LONG);
-        await dateinput1.click();
+        const dateInput = await this._driver.wait(until.elementLocated(By.xpath(this._selectors.dateInputXpath(monthInput, dayInput))), SELENIUM_WAIT_TIMEOUT_LONG);
+        await this._driver.wait(until.elementIsVisible(dateInput), SELENIUM_WAIT_TIMEOUT_LONG);
+        await dateInput.click();
     }
 
     /**
