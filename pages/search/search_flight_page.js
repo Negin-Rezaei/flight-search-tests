@@ -33,7 +33,7 @@ export default class SearchflightPage {
             searchButtonXpath: "//button[text()='جستجو']",
             closePopupButtonCss: "button[class*='close'], .close-button-class",
             // Loading 
-            spinLoadingXpath: "//*[@id='__next']/div[4]/div/div[1]/div/div/div[2]",
+            spinLoadingXpath: "//*[@id='__next']/div[4]/div/div[1]/div/div/div[3]",
             // other 
             searchSuccessfullyXpath: "//div[@class='relative mb-3 md:mb-4']",
             filterContent: (content) => `//*[@id='search-bar']//span[contains(text(),'${content}')]`,
